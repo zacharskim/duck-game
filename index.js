@@ -37,13 +37,26 @@ if(dPress){
 }
 }
 
+//spriteSheet duck coord:
+//wings up: ctx.drawImage(spriteSheet, 368, 0, 190, 225, dx, dy, 190, 225) 
+//wings down: ctx.drawImage(spriteSheet, 245, 0, 125, 225, 325, 125, 190, 225)  
+//wings middle: ctx.drawImage(spriteSheet, 120, 0, 125, 225, 325, 125, 190, 225 )
+//hit state: ctx.drawImage(spriteSheet, 238, 220, 125, 225, 325, 125, 190, 225) 
+//falling left: ctx.drawImage(spriteSheet, 120, 244, 125, 225, 325, 125, 190, 225)
+//falling right: just flip it with the context api maybe?
+
+//all coords are subject to change, not super precise right now
+
+
   function spawnDuck() {
-    console.log('drawing duck i guess', canvas.width, canvas.height);
-    ctx.drawImage(spriteSheet, 368, 0, 200, 225, 200, 100, canvas.width * .35, canvas.height * .35)
+    console.log('drawing duck i guess', canvas.width*.35, canvas.height*.35);
+    ctx.drawImage(spriteSheet, 120, 244, 125, 225, 325, 125, 190, 225)
     // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
   // ctx.drawImage(spriteSheet, , 0, 100, 100, 50, 50, 100, 100);
 }
 // gameLoop();
+
+
 
 // drawing = new Image();
 // // spriteSheet = new Image();
