@@ -58,9 +58,26 @@ if(dPress){
 let duckX = 240
 let duckY = 320
 let flyingUp = true;
+let groundY = 425
 let currentFrame = 0;
-
 let frameCount = 0;
+
+
+function drawFlippedImage(img, x, y, dx, dy, width, height, dwidth, dheight) {
+  // translate context to right edge of image
+  ctx.translate(x + width, y);
+
+  // flip context horizontally
+  ctx.scale(-1, 1);
+
+  // draw image
+  ctx.drawImage(img, x, y, dx, dy, width, height, dwidth, dheight);
+
+  // reset transformation matrix to the identity matrix
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+
 function drawDuck() {
   const duckXVelocity = 2
   const duckYVelocity = 2
@@ -74,14 +91,17 @@ function drawDuck() {
   switch(currentFrame){
     case 0:
       // console.log('switch, currentFrame', currentFrame);
-      ctx.drawImage(spriteSheet, 245, 0, 125, 225, duckX, duckY, 190, 225)
+      drawFlippedImage(spriteSheet, 245, 0, 125, 225, duckX, duckY, 190, 225)
+      break;
     case 1:
       // console.log('switch, currentFrame', currentFrame);
-      ctx.drawImage(spriteSheet, 368, 0, 190, 225, duckX, duckY, 190, 225)
+      drawFlippedImage(spriteSheet, 368, 0, 190, 225, duckX, duckY, 190, 225)
+      break;
     case 2: 
     console.log('switch, currentFrame', currentFrame);
-      ctx.drawImage(spriteSheet, 120, 0, 125, 225, duckX, duckY, 190, 225)
+    drawFlippedImage(spriteSheet, 120, 0, 125, 225, duckX, duckY, 190, 225)
     default:
+      break;
 
   }
   
@@ -98,13 +118,12 @@ function drawDuck() {
       duckX += duckXVelocity
       if (duckY >= groundY) flyingUp = true; // Change direction at ground
     }
-  
+    console.log(currentFrame, 'what the heck');
     // Update frame for animation
-    console.log(frameCount, 'huh');
     if (++frameCount % 10 === 0) { // Slow down frame change
       currentFrame += 1
-      console.log('sheesh', currentFrame);
-      if(currentFrame = 3) currentFrame = 0 //reset framecount
+      console.log(currentFrame, 'hello');
+      if(currentFrame === 3) currentFrame = 0 //reset framecount
     }
 }
 
